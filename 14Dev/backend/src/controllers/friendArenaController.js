@@ -54,11 +54,11 @@ const createFriendArenaRoom = async (req, res) => {
                 userId,
                 joinedAt: new Date()
             }],
-            leaderboard: [{
+            leaderboard: [{ //we are creating initial leaderboard for an user
                 userId,
                 problemsSolved: 0,
                 totalTestCasesPassed: 0,
-                submissions: selectedProblems.map(problemId => ({
+                submissions: selectedProblems.map(problemId => ({//for each problem there is each tracking object
                     problemId,
                     solved: false,
                     testCasesPassed: 0,

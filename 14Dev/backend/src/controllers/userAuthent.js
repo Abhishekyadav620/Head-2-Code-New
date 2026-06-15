@@ -9,7 +9,6 @@ const Submission = require("../models/submission")
 const register = async (req,res)=>{
     
     try{
-        // validate the data;
 
       validate(req.body); 
       const {firstName, emailId, password}  = req.body;

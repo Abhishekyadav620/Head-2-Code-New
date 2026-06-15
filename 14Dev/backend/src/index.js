@@ -32,14 +32,24 @@ const server = http.createServer(app);
 // Setup Socket.io
 const io = new Server(server, {
     cors: {
-        origin: ['http://localhost:5173', 'http://localhost:5175'],
+        origin: [
+            'http://localhost:5173',
+            'http://localhost:5175',
+            'http://head2code.duckdns.org',
+            'http://www.head2code.duckdns.org'
+        ],
         credentials: true,
         methods: ['GET', 'POST']
     }
 });
 
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:5175'],
+    origin: [
+        'http://localhost:5173',
+        'http://localhost:5175',
+        'http://head2code.duckdns.org',
+        'http://www.head2code.duckdns.org'
+    ],
     credentials: true
 }));
 

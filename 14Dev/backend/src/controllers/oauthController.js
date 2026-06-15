@@ -18,7 +18,7 @@ const oauthSuccess = async (req, res) => {
         );
 
         res.cookie('token', token, { maxAge: 60 * 60 * 1000 });
-        return res.redirect(`${getFrontendBase()}/`);
+        return res.redirect(`${getFrontendBase()}/`);//After login → go to homepage
     } catch (err) {
         return res.redirect(`${getFrontendBase()}/login?error=oauth_failed`);
     }

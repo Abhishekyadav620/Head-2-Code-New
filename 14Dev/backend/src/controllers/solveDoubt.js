@@ -117,6 +117,7 @@ const solveDoubt = async (req, res) => {
         });
         
         // Validation
+        //mtlb jab frontend se galat data aa jaega jaisa mtlb string agya array format ki jagah
         if (!messages || !Array.isArray(messages)) {
             return res.status(400).json({ 
                 message: "Invalid messages format. Expected an array of messages." 
@@ -226,7 +227,7 @@ Remember: Your goal is to help users learn and understand DSA concepts through t
                 safetySettings: [
                     {
                         category: "HARM_CATEGORY_HARASSMENT",
-                        threshold: "BLOCK_NONE"
+                        threshold: "BLOCK_NONE"//Dont block anythi ng Ai can respond freely
                     },
                     {
                         category: "HARM_CATEGORY_HATE_SPEECH",

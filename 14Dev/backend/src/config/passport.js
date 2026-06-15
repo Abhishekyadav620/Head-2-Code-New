@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user');
 
 function getCallbackBase() {
-    // In local dev, BACKEND_URL should be something like http://localhost:3000
+    
     return process.env.BACKEND_URL || `http://localhost:${process.env.PORT || 3000}`;
 }
 
@@ -16,6 +16,7 @@ module.exports = function initPassport(passport) {
                 clientID: process.env.GOOGLE_CLIENT_ID,
                 clientSecret: process.env.GOOGLE_CLIENT_SECRET,
                 callbackURL: `${backendBase}/oauth/google/callback`,
+                // callbackURL: "http://head2code.duckdns.org/oauth/google/callback",
             },
             async (accessToken, refreshToken, profile, done) => {
                 try {
@@ -57,8 +58,8 @@ module.exports = function initPassport(passport) {
     }
 
     // We are stateless (JWT cookie), so no sessions required.
-    passport.serializeUser((user, done) => done(null, user._id));
-    passport.deserializeUser(async (id, done) => {
+    passport.serializeUser((user, done) => done(null, user._id));//serialize user save the user.__id in the session
+    passport.deserializeUser(async (id, done) => {//deserialize user uses the id to fetch data from the document for the fulture login
         try {
             const user = await User.findById(id);
             done(null, user);

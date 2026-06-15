@@ -83,7 +83,7 @@ const userSchema = new Schema({
             type: String,
             required: true
         },
-        unlockedAt: {
+        unlockedAt: {     
             type: Date,
             default: Date.now
         },

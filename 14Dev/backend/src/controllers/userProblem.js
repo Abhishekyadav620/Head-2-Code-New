@@ -45,12 +45,27 @@ const createProblem = async (req,res)=>{
 
 
        console.log(testResult);
+            const statusMessages = {
+          3: "Accepted ✅",
+          4: "Wrong Answer ❌",
+          5: "Time Limit Exceeded ⏰",
+          6: "Compilation Error 💥",
+          7: "Runtime Error ⚠️",
+          8: "Memory Limit Exceeded 🧠",
+};
 
-       for(const test of testResult){
-        if(test.status_id!=3){
-         return res.status(400).send("Error Occured");
-        }
-       }
+       for (const test of testResult) {
+       if (test.status_id != 3) {
+
+         const message = statusMessages[test.status_id] || "Unknown Error ❌";
+
+         return res.status(400).json({
+           success: false,
+          error: message,
+          status_id: test.status_id
+    });
+  }
+}
 
       }
 
@@ -196,7 +211,7 @@ const getProblemById = async(req,res)=>{
     res.status(500).send("Error: "+err);
   }
 }
-
+//send all the problem to the frontend
 const getAllProblem = async(req,res)=>{
 
   try{
@@ -219,10 +234,10 @@ const solvedAllProblembyUser =  async(req,res)=>{
    
     try{
        
-      const userId = req.result._id;
+      const userId = req.result._id;//Logged-in user  ID
 
       const user =  await User.findById(userId).populate({
-        path:"problemSolved",
+        path:"problemSolved",//problemSolved = wo field jisme problem IDs stored hain
         select:"_id title difficulty tags"
       });
       
@@ -241,7 +256,7 @@ const submittedProblem = async(req,res)=>{
     const userId = req.result._id;
     const problemId = req.params.pid;
 
-   const ans = await Submission.find({userId,problemId});
+   const ans = await Submission.find({userId,problemId});//fetch all the  submission a user have done on this question 
   
   if(ans.length==0)
     res.status(200).send("No Submission is persent");

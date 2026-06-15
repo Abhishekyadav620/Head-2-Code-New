@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
-const redisClient = require("../config/redis")
+const redisClient = require("../config/redis")//Redis database used for token blacklist
 
 const userMiddleware = async (req,res,next)=>{
 
@@ -26,10 +26,10 @@ const userMiddleware = async (req,res,next)=>{
 
         // Redis ke blockList mein persent toh nahi hai
 
-        const IsBlocked = await redisClient.exists(`token:${token}`);
+        const IsBlocked = await redisClient.exists(`token:${token}`);//check whether user token exist in redis blacklist
 
         if(IsBlocked)
-            throw new Error("Invalid Token");
+            throw new Error("Invalid Token");//if exist then  user cannot access API.
 
         req.result = result;
 

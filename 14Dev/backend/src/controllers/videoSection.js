@@ -108,7 +108,7 @@ const saveVideoMetadata = async (req, res) => {
       duration: cloudinaryResource.duration || duration,
       thumbnailUrl
     });
-
+//inserts a new document in the databse and saves it
 
     res.status(201).json({
       message: 'Video solution saved successfully',

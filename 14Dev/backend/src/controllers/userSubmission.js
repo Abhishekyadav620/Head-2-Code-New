@@ -28,11 +28,11 @@ const submitCode = async (req, res) => {
     const problem = await Problem.findById(problemId);
     //    testcases(Hidden)
 
-    //   Kya apne submission store kar du pehle....
+    // This creates new Submission record in a database
     const submittedResult = await Submission.create({
       userId,
       problemId,
-      code,
+      code, 
       language,
       status: 'pending',
       testCasesTotal: problem.hiddenTestCases.length
@@ -64,7 +64,7 @@ const submitCode = async (req, res) => {
     let status = 'accepted';
     let errorMessage = null;
 
-
+//testresult is array of result from judge0
     for (const test of testResult) {
       if (test.status_id == 3) {
         testCasesPassed++;
