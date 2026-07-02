@@ -38,6 +38,7 @@ function Signup() {
   };
 
   const apiBase = axiosClient?.defaults?.baseURL || 'http://localhost:3000';
+  // const apiBase = "http://head2code.duckdns.org";
 
   return (
     <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4 relative overflow-hidden">
