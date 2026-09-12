@@ -136,7 +136,9 @@ Head-2-Code/
 
 The folder structure may vary depending on the actual implementation.
 
+
 🔄 Application Workflow
+
 Users register or log in to the platform.
 Users access daily coding problems or participate in contests.
 Users write code using the Monaco Editor.
@@ -146,7 +148,10 @@ Judge0 executes the code against the required test cases.
 The platform receives the execution result and displays the verdict.
 Users can use the Gemini-powered AI assistant for hints, debugging, and complexity analysis.
 Socket.IO enables real-time contest updates and synchronization.
+
+
 ⚙️ Installation & Setup
+
 1. Clone the Repository
 git clone https://github.com/Abhishekyadav620/Head-2-Code.git
 2. Navigate to the Project
